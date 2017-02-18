@@ -38,6 +38,12 @@ public class Coor{
     public Coor(){
 	this(1,1,1);
     }
-
+    public String toString(){
+	return ""+getX()+" "+
+	    getY()+" "+
+	    getZ()+" "+
+	    getL();
+			   
+    }
 
 }

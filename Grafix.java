@@ -1,11 +1,14 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
+
 public class Grafix{
     //instance variables of Grafix
     private int width;
     private int height;
     private Pixel[][] data;
+    private LinkedList<PointList> edges;
     public Grafix(int width, int height){
 	setWidth(width);
 	setHeight(height);
@@ -15,6 +18,7 @@ public class Grafix{
 		data[i][j]=new Pixel(100,100,100);
 	    }
 	}
+	edges = new LinkedList<PointList>();
     }
     public Grafix(){
 	this(500,500);
@@ -29,6 +33,19 @@ public class Grafix{
     public void plot(int x, int y, Pixel p){
 	data[x][y]=p;
     }
+    public void plot(Coor c, Pixel p){
+	plot((int)c.getX(), (int)c.getY(), p);
+    }
+    public void addEdge(PointList p){
+	edges.add(p);
+    }
+    public void addEdge(Coor[] vals){
+	PointList p = new PointList();
+	for(int i = 0; i < vals.length; i++){
+	    p.addCoor(vals[i]);
+	}
+	addEdge(p);
+    }
     //accessors
     public int getWidth(){
         return width;
@@ -38,6 +55,23 @@ public class Grafix{
     }
     public Pixel getPixel(int x, int y){
 	return data[x][y];
+    }
+    public void printEdgeList(){
+	String[] rows = new String[4];
+        for(int i = 0; i<4; i++){
+            rows[i]="";
+        }
+	LinkedList<PointList> newEdgeList = new LinkedList<PointList>();
+	PointList next = edges.poll();
+	while(next!=null){
+	    newEdgeList.add(next);
+	    rows = next.toRows(rows);
+	    next = edges.poll();
+	}
+	edges=newEdgeList;
+	for(int i = 0; i < 4; i++){
+            System.out.println(rows[i]);
+        }
     }
     //getData converts all of the pixel data to a string
     public String printData(){
@@ -168,6 +202,29 @@ public class Grafix{
 	    }
 	}
 
+    }
+    public void bresLine(Coor start, Coor end, Pixel p){
+	bresLine((int)start.getX(),(int)start.getY(),(int)end.getX(),(int)end.getY(),p);
+    }
+    //writeEdge writes an edge by connecting the dots
+    public void writeEdge(PointList p, Pixel color){
+	Coor start = p.getCoor();
+	plot(start,color);
+	Coor end = p.getCoor();
+	for(int i = 0; i < p.len()-1; i++){
+	    bresLine(start,end,color);
+	    start = end;
+	    end = p.getCoor();
+	}
+    }
+    //writeCoors uses th einstructions to draw an image
+    //it is one time use only
+    public void writeCoors(Pixel color){
+	PointList edge = edges.poll();
+	while(edge!=null){
+	    writeEdge(edge, color);
+	    edge = edges.poll();
+	}
     }
     //Write function copies the pixels to image file
     public void write(String name){

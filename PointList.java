@@ -7,26 +7,40 @@ public class PointList{
     public void addCoor(Coor c){
 	points.add(c);
     }
-    public void printCoors(){
+    //getCoor returns a coor and shifts it to the back of the list
+    public Coor getCoor(){
+	Coor c = points.poll();
+	points.add(c);
+	return c;
+    }
+    public int len(){
+	return points.size();
+    }
+    //toRows adds the elements to strings
+    //Used when multiple pointlists are being viewed horizontally
+    public String[] toRows(String[] rows){
 	LinkedList<Coor> newPoints = new LinkedList<Coor>();
 	Coor next = points.poll();
-	String r1 = "";
-	String r2 = "";
-	String r3 = "";
-	String r4 = "";
 	while(next!=null){
 	    newPoints.add(next);
+	    rows[0]+=next.getX()+" ";
+	    rows[1]+=next.getY()+" ";
+	    rows[2]+=next.getZ()+" ";
+	    rows[3]+=next.getL()+" ";
 	    next = points.poll();
-	    r1+=next.getX()+" ";
-	    r2+=next.getY()+" ";
-	    r3+=next.getZ()+" ";
-	    r4+=next.getL()+" ";
 	}
 	points = newPoints;
-	System.out.println(r1);
-	System.out.println(r2);
-	System.out.println(r3);
-	System.out.println(r4);	
+	return rows;
+    }
+    public void printCoors(){
+	String[] rows = new String[4];
+	for(int i = 0; i<4; i++){
+	    rows[i]="";
+	}
+	rows=toRows(rows);
+	for(int i = 0; i < 4; i++){
+	    System.out.println(rows[i]);
+	}
     }
     public PointList(){
 	points = new LinkedList<Coor>();

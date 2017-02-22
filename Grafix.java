@@ -282,24 +282,27 @@ public class Grafix{
     }
     //multipies edgelist by transformation matrix
     //theres no way this long function works
+    //it didn't on the first try but I tihnk it works now
     public void multMatrices(double[][] mat){
 	double[] mults;
 	PointList points;
 	Coor point;
+	Coor newpoint;
 	for(int i = 0; i<edges.size(); i++){
 		points=edges.poll();
 		edges.add(points);
 		for(int j = 0; j < points.len(); j++){
 		    point = points.getCoor();
-		    point.setX(mat[0][0]*point.getX()+
+		    newpoint = new Coor();
+		    newpoint.setX(mat[0][0]*point.getX()+
 			       mat[1][0]*point.getY()+
 			       mat[2][0]*point.getZ()+
 			       mat[3][0]*point.getL());
-		    point.setY(mat[0][1]*point.getX()+
+		    newpoint.setY(mat[0][1]*point.getX()+
 			       mat[1][1]*point.getY()+
 			       mat[2][1]*point.getZ()+
 			       mat[3][1]*point.getL());
-		    point.setZ(mat[0][2]*point.getX()+
+		    newpoint.setZ(mat[0][2]*point.getX()+
 			       mat[1][2]*point.getY()+
 			       mat[2][2]*point.getZ()+
 			       mat[3][2]*point.getL());
@@ -307,6 +310,9 @@ public class Grafix{
 			       mat[1][3]*point.getY()+
 			       mat[2][3]*point.getZ()+
 			       mat[3][3]*point.getL());*/
+		    point.setX(newpoint.getX());
+		    point.setY(newpoint.getY());
+		    point.setZ(newpoint.getZ());
 		}
 	}
     }

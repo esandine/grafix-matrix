@@ -226,6 +226,17 @@ public class Grafix{
 	    edge = edges.poll();
 	}
     }
+    //scale handles scalar multiplication of edge matrices
+    public void scale(double d){
+	LinkedList<PointList> newEdges = new LinkedList<PointList>();
+	PointList edge = edges.poll();
+	while(edge!=null){
+	    edge.scale(d);
+	    newEdges.add(edge);
+	    edge = edges.poll();
+	}
+	edges = newEdges;
+    }
     //Write function copies the pixels to image file
     public void write(String name){
 	try{

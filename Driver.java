@@ -17,6 +17,8 @@ public class Driver{
 	g.addEdge(coors2);
 	Pixel p = new Pixel(200,0,0);
 	g.printEdgeList();
+	g.scale(.5);
+	g.printEdgeList();
 	g.writeCoors(p);
 	g.write("edgy.ppm");
     }

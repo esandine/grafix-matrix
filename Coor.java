@@ -16,6 +16,11 @@ public class Coor{
     public void setL(double val){
         l=val;
     }
+    public void scale(double val){
+	setX(getX()*val);
+	setY(getY()*val);
+	setZ(getZ()*val);
+    }
     //Accessors
     public double getX(){
         return x;

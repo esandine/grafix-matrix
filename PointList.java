@@ -42,6 +42,14 @@ public class PointList{
 	    System.out.println(rows[i]);
 	}
     }
+    //scalar multiplication of matrix column
+    public void scale(double d){
+	Coor next;;
+	for(int i = 0; i < len(); i++){
+	    next = getCoor();
+	    next.scale(d);
+	}
+    }
     public PointList(){
 	points = new LinkedList<Coor>();
     }

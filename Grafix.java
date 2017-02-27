@@ -31,13 +31,14 @@ public class Grafix{
 	height = h;
     }
     public void plot(int x, int y, Pixel p){
-	data[x][y]=p;
+	if(x<data.length&&y<data[0].length&&x>0&&y>0)
+	    data[x][y]=p;
     }
     public void plot(Coor c, Pixel p){
 	plot((int)c.getX(), (int)c.getY(), p);
     }
     public void addEdge(PointList p){
-	edges.add(p);
+	edges.add(p.copyList());
     }
     public void addEdge(Coor[] vals){
 	PointList p = new PointList();

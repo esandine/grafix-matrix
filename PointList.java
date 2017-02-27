@@ -53,5 +53,13 @@ public class PointList{
     public PointList(){
 	points = new LinkedList<Coor>();
     }
+    public PointList copyList(){
+	PointList retPoints = new PointList();
+	Coor c;
+	for(int i = 0; i < len(); i++){
+	    retPoints.addCoor(getCoor().copyCoor());
+	}
+	return retPoints;
+    }
     
 }

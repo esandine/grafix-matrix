@@ -48,8 +48,10 @@ public class Coor{
 	return ""+getX()+" "+
 	    getY()+" "+
 	    getZ()+" "+
-	    getL();
-			   
+	    getL();			   
+    }
+    public Coor copyCoor(){
+	return new Coor(getX(), getY(), getZ());
     }
 
 }

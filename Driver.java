@@ -41,8 +41,18 @@ public class Driver{
 	g.scale(5);
 	g.printEdgeList();
 	System.out.println("Drawn");
+	//Drawing cool image
+	PointList l = new PointList();
+	l.addCoor(new Coor(0,1,0));
+	l.addCoor(new Coor(1,1,0));
+	l.addCoor(new Coor(1,0,0));
+	g = new Grafix();
+	for(int i = 0; i < 50; i++){
+	    l.scale(1.1);
+	    g.addEdge(l);
+	}
 	g.writeCoors(p);
 	g.write("edgy.ppm");
-
+	
     }
 }

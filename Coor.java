@@ -20,6 +20,7 @@ public class Coor{
 	setX(getX()*val);
 	setY(getY()*val);
 	setZ(getZ()*val);
+	setL(getL()*val);
     }
     //Accessors
     public double getX(){

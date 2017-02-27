@@ -3,5 +3,5 @@ make run:
 	javac Grafix.java
 	javac Driver.java
 	java Driver
-	convert test.ppm test.png
-	display test.png
+	convert edgy.ppm edgy.png
+	display edgy.png

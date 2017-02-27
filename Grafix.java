@@ -306,13 +306,14 @@ public class Grafix{
 			       mat[1][2]*point.getY()+
 			       mat[2][2]*point.getZ()+
 			       mat[3][2]*point.getL());
-		    /*point.setL(mat[0][3]*point.getX()+
+		    newpoint.setL(mat[0][3]*point.getX()+
 			       mat[1][3]*point.getY()+
 			       mat[2][3]*point.getZ()+
-			       mat[3][3]*point.getL());*/
+			       mat[3][3]*point.getL());
 		    point.setX(newpoint.getX());
 		    point.setY(newpoint.getY());
 		    point.setZ(newpoint.getZ());
+		    point.setL(newpoint.getL());
 		}
 	}
     }
